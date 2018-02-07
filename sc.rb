@@ -21,7 +21,7 @@ line.split(/[^\d]/).join
 line.gsub(/\D/, '')
 #####################################
 find("svg use")['xlink:href'] # pega o value do atributo no []
-
+a
 
 
 rt.gsub!("rateToken ", "")
