@@ -1,6 +1,9 @@
 ##cheatSheets do vitocaaa
+ruby -e"10.times{ system 'cucumber chrome=true -t@gera_proposta_generica'}"
 --guess
-
+AMBIENTE = YAML.load_file("ambiente.yml")
+File.open("data/#{nome_arquivo}.html", "w") { |f| f.write(corpo) }# grava gerando um arquivo novo
+html = File.open("data/#{nome_arquivo}.html") ## abre um arquivo
 find(".tab-anchor", text: "COMODIDADES").click
 assert_selector(".tab-anchor", text: "COMODIDADES")
 select(valor.to_s, :from => label)
@@ -21,8 +24,6 @@ line.split(/[^\d]/).join
 line.gsub(/\D/, '')
 #####################################
 find("svg use")['xlink:href'] # pega o value do atributo no []
-a
-
 
 rt.gsub!("rateToken ", "")
 rt.gsub!("<", "{")
@@ -53,17 +54,28 @@ elsif ENV['tt']
   end
 
   file_name = scenario.name.gsub(' ', '_').downcase!
-  target = "data/screenshots/error/#{file_name}.png"
+  target = "data	/screenshots/error/#{file_name}.png"
   if scenario.failed?
     page.save_screenshot(target)
     embed(target, 'image/png', 'Evidência')
   end
 
-horario = rand(0..23) 
+horario = rand(0..23)
  within(".withdrawal-info-row"){find(ELEMENTS[campo]).find("option[value='#{horario}']").select_option}
-checkout-form-error
+checkout-form-error	
 
 result = page.driver.browser.window_handles.last
+page.driver.browser.switch_to.window(result)
 
-    page.driver.browser.switch_to.window(result)
-
+def valida_alert
+    begin
+      retries ||= 0
+      "vam ve"
+      puts "#{page.driver.browser.switch_to.alert.text} SIM."
+      page.accept_alert
+      raise "PAGINA NAO RESPONDEU" unless assert_no_selector(".main-frame-error") == true
+    rescue
+      p "sera?"
+      retry if (retries += 1) < 30
+    end
+  end
