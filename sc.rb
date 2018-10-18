@@ -79,3 +79,8 @@ def valida_alert
       retry if (retries += 1) < 30
     end
   end
+#TIRAR PRINT APOS STEPS PARA O RELATORIO
+AfterStep do   
+  screenshot = screenshot("data/screenshots/#{Time.now.strftime("%Y%m%d%H%M%S")}.png")
+  embed("data:image/png;base64,#{Base64.encode64(open(screenshot).to_a.join)}", "image/png")
+ end
